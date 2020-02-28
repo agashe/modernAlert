@@ -1,2 +1,2 @@
 # modernAlert
-Custom alert using JQuery.
+Custom alert using Vanilla.js
