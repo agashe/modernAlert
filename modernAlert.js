@@ -47,6 +47,8 @@ function modernAlert(content = '', buttons = '', values = [])
         },
     };
 
+    const modernAlertButtonTypes = ['ok', 'yes_no', 'custom'];
+
     // Define modernAlert
     let modernAlertBody = document.createElement(modernAlertProperties.el);
 
@@ -63,12 +65,40 @@ function modernAlert(content = '', buttons = '', values = [])
     modernAlertElement.style.margin = `-207px 0 0 -${modernAlertElement.offsetWidth / 2}px`;
 
     // Add the buttons
-    let modernAlertButton = document.createElement(modernAlertButtonProperties.el);
-    let modernAlertButton2 = document.createElement(modernAlertButtonProperties.el);
-    Object.assign(modernAlertButton.style, modernAlertButtonProperties.style);
-    Object.assign(modernAlertButton2.style, modernAlertButtonProperties.style);
-    modernAlertButton.innerHTML = 'Accept';
-    modernAlertButton2.innerHTML = 'Get Back';
-    modernAlertElement.appendChild(modernAlertButton);
-    modernAlertElement.appendChild(modernAlertButton2);
+    let modernAlertButtons = [];
+    
+    if (modernAlertButtonTypes.includes(buttons) || !buttons) {
+        switch (buttons) {
+            case 'custom':
+            break;
+
+            case 'yes_no':
+                modernAlertButtons.push({label: 'Yes', return: true});
+                modernAlertButtons.push({label: 'No', return: false});
+            break;
+
+            case 'ok':
+            default:
+                modernAlertButtons.push({label: 'Ok', return: true});
+        }
+    }
+
+    let modernAlertButton = {};
+    modernAlertButtons.forEach(button => {
+        modernAlertButton = document.createElement(modernAlertButtonProperties.el);
+        Object.assign(modernAlertButton.style, modernAlertButtonProperties.style);
+        modernAlertButton.id = 'x';
+        modernAlertButton.innerHTML = button.label;
+        modernAlertElement.appendChild(modernAlertButton);
+
+        // return modernAlertButton.addEventListener('click', function(){
+            
+        // });
+        document.addEventListener('click', function (e) {
+            if (e.target.id = 'x') {
+                modernAlertElement.remove();
+                return true;
+            }
+        }, false);
+    });
 }
