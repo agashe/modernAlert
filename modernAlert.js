@@ -84,21 +84,23 @@ function modernAlert(content = '', buttons = '', values = [])
     }
 
     let modernAlertButton = {};
-    modernAlertButtons.forEach(button => {
-        modernAlertButton = document.createElement(modernAlertButtonProperties.el);
-        Object.assign(modernAlertButton.style, modernAlertButtonProperties.style);
-        modernAlertButton.id = 'x';
-        modernAlertButton.innerHTML = button.label;
-        modernAlertElement.appendChild(modernAlertButton);
+    var promise = new Promise(function(resolve, reject) {
+        modernAlertButtons.forEach(button => {
+            modernAlertButton = document.createElement(modernAlertButtonProperties.el);
+            Object.assign(modernAlertButton.style, modernAlertButtonProperties.style);
+            modernAlertButton.id = 'x';
+            modernAlertButton.innerHTML = button.label;
+            modernAlertElement.appendChild(modernAlertButton);
 
-        // return modernAlertButton.addEventListener('click', function(){
-            
-        // });
-        document.addEventListener('click', function (e) {
-            if (e.target.id = 'x') {
-                modernAlertElement.remove();
-                return true;
-            }
-        }, false);
+            modernAlertButton.addEventListener('click', function(){
+                resolve('blabla');
+            });
+        });
+    });
+
+    return promise.then(function(res){
+        modernAlertElement.remove();
+        console.log(res);
+        return res;
     });
 }
