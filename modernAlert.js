@@ -4,7 +4,7 @@
  * Author: Mohamed Yousef <engineer.mohamed.yossef@gmail.com>
  * License: GPL
  */
-var promise = '';
+
 function modernAlert(content = '', buttons = '', values = [])
 {
     // Close any other modernAlert
@@ -84,32 +84,21 @@ function modernAlert(content = '', buttons = '', values = [])
     }
 
     let modernAlertButton = {};
-    promise = new Promise(function(resolve, reject) {
-        modernAlertButtons.forEach(button => {
-            modernAlertButton = document.createElement(modernAlertButtonProperties.el);
-            Object.assign(modernAlertButton.style, modernAlertButtonProperties.style);
-            modernAlertButton.id = 'x';
-            modernAlertButton.innerHTML = button.label;
-            modernAlertElement.appendChild(modernAlertButton);
-
+    let promises = [];
+    modernAlertButtons.forEach(button => {
+        modernAlertButton = document.createElement(modernAlertButtonProperties.el);
+        Object.assign(modernAlertButton.style, modernAlertButtonProperties.style);
+        modernAlertButton.id = 'x';
+        modernAlertButton.innerHTML = button.label;
+        modernAlertElement.appendChild(modernAlertButton);
+        promises.push( new Promise(function(resolve, reject) {
             modernAlertButton.addEventListener('click', function(){
-                console.log('click');
+                modernAlertElement.remove();
                 resolve(button.return);
-                return 'hi';
             });
-        });
+        })
+        );
     });
-}
-
-function test(rr){
-    modernAlert('we vice!!');
-    // console.log(promise);
-    var omar = '';
-    promise.then(function(res){
-        // modernAlertElement.remove();
-        // console.log(res);
-        omar = res;
-    });
-
-    return omar;
+    
+    return promises;
 }

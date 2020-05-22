@@ -11,10 +11,23 @@
 
     <br>
 
-    <button onclick="console.log(test('asass'));">Click</button>
+    <button onclick="demo(sss);">Click</button>
 
     <!-- [JavaScript] -->
     <script src="modernAlert.js"></script>
+    <script>
+        function demo(callback) {
+            var result = modernAlert('test question', 'ok');
+
+            Promise.race(result).then(re => {
+                callback(re);
+            });
+        }
+
+        function sss(boo){
+            console.log(boo);
+        }
+    </script>
     <!-- [JavaScript] -->
 </body>
 </html>
