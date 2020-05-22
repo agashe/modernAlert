@@ -4,7 +4,7 @@
  * Author: Mohamed Yousef <engineer.mohamed.yossef@gmail.com>
  * License: GPL
  */
-
+var promise = '';
 function modernAlert(content = '', buttons = '', values = [])
 {
     // Close any other modernAlert
@@ -79,12 +79,12 @@ function modernAlert(content = '', buttons = '', values = [])
 
             case 'ok':
             default:
-                modernAlertButtons.push({label: 'Ok', return: true});
+                modernAlertButtons.push({label: 'Ok', return: 'lol'});
         }
     }
 
     let modernAlertButton = {};
-    var promise = new Promise(function(resolve, reject) {
+    promise = new Promise(function(resolve, reject) {
         modernAlertButtons.forEach(button => {
             modernAlertButton = document.createElement(modernAlertButtonProperties.el);
             Object.assign(modernAlertButton.style, modernAlertButtonProperties.style);
@@ -93,14 +93,23 @@ function modernAlert(content = '', buttons = '', values = [])
             modernAlertElement.appendChild(modernAlertButton);
 
             modernAlertButton.addEventListener('click', function(){
-                resolve('blabla');
+                console.log('click');
+                resolve(button.return);
+                return 'hi';
             });
         });
     });
+}
 
-    return promise.then(function(res){
-        modernAlertElement.remove();
-        console.log(res);
-        return res;
+function test(rr){
+    modernAlert('we vice!!');
+    // console.log(promise);
+    var omar = '';
+    promise.then(function(res){
+        // modernAlertElement.remove();
+        // console.log(res);
+        omar = res;
     });
+
+    return omar;
 }
