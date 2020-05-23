@@ -38,37 +38,53 @@
     <p>
         <div class="code">
             // on the click event of the button<br>
-            modernAlert('Ask a question to the user?');
+            modernAlert('Ask a question to the user?');<br>
+            <br>
+            // this is the basic buttons layout , and the full version of it will be:<br>
+            modernAlert('Ask a question to the user?', {buttonsLayout: 'ok'}, myCallBackFunction);<br>
         </div>
     </p>
     
     <hr>
 
     <h3>#2 Yes/No Example</h3>
-    <p>(Checkyour console to see the result)</p>
+    <p>(Check the browser's console to see the result!)</p>
     <button onclick="modernAlert('Ask a question to the user?', {buttonsLayout: 'yesNo'}, result => {console.log(result)});">Click here to see the result!</button>
     <p>
         <div class="code">
             // on the click event of the button<br>
             modernAlert('Ask a question to the user?', {buttonsLayout: 'yesNo'}, result => {<br>
-                console.log(result); // true or false<br>
+            &emsp;&emsp;console.log(result); // true or false<br>
             });<br>
         </div>
     </p>
 
     <hr>
 
-    <h3>#1 Basic Example</h3>
-    <button onclick="modernAlert('<b>Ask</b> a question to the user??', 'custom', btn, res => {console.log('suger ' + res)});">Click</button>
-    
-    <hr>
-
-    <h3>#1 Basic Example</h3>
-    <button onclick="modernAlert('<b>Ask</b> a question to the user??', 'custom', btn, res => {console.log('suger ' + res)});">Click</button>
-    <hr>
-
-    <h3>#1 Basic Example</h3>
-    <button onclick="modernAlert('<b>Ask</b> a question to the user??', 'custom', btn, res => {console.log('suger ' + res)});">Click</button>
+    <h3>#3 Custom buttons Example</h3>
+    <p>(Check the browser's console to see the result!)</p>
+    <button onclick="myAlert();">Click here to see the result!</button>
+    <p>
+        <div class="code">
+            // define myAlert function<br>
+            function myAlert(){<br>
+            &emsp;&emsp;modernAlert('Ask a question to the user?', 
+                {<br>
+                &emsp;&emsp;&emsp;&emsp;buttonsLayout: 'custom',<br>
+                &emsp;&emsp;&emsp;&emsp;buttonsStructure: [<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{label: 'button1', return: 'return something #1'},<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{label: 'button2', return: 'return something #2'},<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{label: 'button3', return: 'return something #3'},<br>
+                &emsp;&emsp;&emsp;&emsp;]<br>
+                &emsp;&emsp;},<br>
+                &emsp;&emsp;result => {<br>
+                &emsp;&emsp;&emsp;&emsp;console.log(result); // 'return something #1' , 'return something #2' or 'return something #3'<br>
+            &emsp;&emsp;});<br>
+            }<br>
+            <br>
+            // now you can call myAlert() , on your button's click event (e.g onclick="myAlert();")
+        </div>
+    </p>
 
     <hr>
 
@@ -79,13 +95,19 @@
     <!-- [JavaScript] -->
     <script src="modernAlert.js"></script>
     <script>
-        var btn = [
-            {label: 'Yes, do this now', return: 1},
-            {label: 'No, let me think first', return: 0},
-            {label: 'Cancel', return: null},
-        ];
-        function testFunc(boo){
-            console.log(`The user answer is: ${boo}`);
+        function myAlert(){
+            modernAlert('Ask a question to the user?', 
+            {
+                buttonsLayout: 'custom',
+                buttonsStructure: [
+                    {label: 'button1', return: 'return something #1'},
+                    {label: 'button2', return: 'return something #2'},
+                    {label: 'button3', return: 'return something #3'},
+                ]
+            },
+            result => {
+                console.log(result); // true or false
+            });
         }
     </script>
     <!-- [JavaScript] -->
