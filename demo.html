@@ -11,21 +11,18 @@
 
     <br>
 
-    <button onclick="demo(sss);">Click</button>
+    <button onclick="modernAlert('<b>Question</b> to the user??', 'custom', btn, res => {console.log('suger ' + res)});">Click</button>
 
     <!-- [JavaScript] -->
     <script src="modernAlert.js"></script>
     <script>
-        function demo(callback) {
-            var result = modernAlert('test question', 'ok');
-
-            Promise.race(result).then(re => {
-                callback(re);
-            });
-        }
-
-        function sss(boo){
-            console.log(boo);
+        var btn = [
+            {label: 'Yes, do this now', return: 1},
+            {label: 'No, let me think first', return: 0},
+            {label: 'Cancel', return: null},
+        ];
+        function testFunc(boo){
+            console.log(`The user answer is: ${boo}`);
         }
     </script>
     <!-- [JavaScript] -->

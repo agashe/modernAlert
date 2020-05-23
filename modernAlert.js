@@ -5,7 +5,7 @@
  * License: GPL
  */
 
-function modernAlert(content = '', buttons = '', values = [])
+function modernAlert(content = '', buttons = '', values = [], callback)
 {
     // Close any other modernAlert
     let oldModernAlertElement = document.getElementById('_modernAlert');
@@ -70,6 +70,9 @@ function modernAlert(content = '', buttons = '', values = [])
     if (modernAlertButtonTypes.includes(buttons) || !buttons) {
         switch (buttons) {
             case 'custom':
+                values.forEach(value => {
+                    modernAlertButtons.push({label: value.label, return: value.return});
+                });
             break;
 
             case 'yes_no':
@@ -84,21 +87,24 @@ function modernAlert(content = '', buttons = '', values = [])
     }
 
     let modernAlertButton = {};
-    let promises = [];
+    let modernAlertButtonPromises = [];
     modernAlertButtons.forEach(button => {
         modernAlertButton = document.createElement(modernAlertButtonProperties.el);
         Object.assign(modernAlertButton.style, modernAlertButtonProperties.style);
         modernAlertButton.id = 'x';
         modernAlertButton.innerHTML = button.label;
         modernAlertElement.appendChild(modernAlertButton);
-        promises.push( new Promise(function(resolve, reject) {
-            modernAlertButton.addEventListener('click', function(){
-                modernAlertElement.remove();
-                resolve(button.return);
-            });
-        })
+        
+        modernAlertButtonPromises.push(new Promise(function(resolve, reject) {
+                modernAlertButton.addEventListener('click', function(){
+                    modernAlertElement.remove();
+                    resolve(button.return);
+                });
+            })
         );
     });
     
-    return promises;
+    Promise.race(modernAlertButtonPromises).then(response => {
+        callback(response);
+    });
 }
