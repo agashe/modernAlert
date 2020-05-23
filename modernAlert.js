@@ -17,7 +17,7 @@ function modernAlert(content = '', buttons = '', values = [], callback)
     const modernAlertProperties = {
         el: 'div',
         style: {
-            minHeight: '100px',
+            minHeight: '80px',
             minWidth: '100px',
             maxHeight: '500px',
             maxWidth: '500px',
@@ -32,41 +32,54 @@ function modernAlert(content = '', buttons = '', values = [], callback)
             position: 'fixed',
             top: '50%',
             left: '50%',
+            zIndex: '99999',
         },
     };
 
     const modernAlertButtonProperties = {
         el: 'button',
         style: {
-            height: '30px',
-            width: '60px',
+            minHeight: '30px',
+            minWidth: '60px',
             padding: '5px',
             fontFamily: 'Tahoma',
-            fontSize: '12pt',
+            fontSize: '9pt',
             textAlign: 'center',
         },
     };
 
+    const modernAlertShadowScreenProperties = {
+        el: 'div',
+        style: {
+            height: '100%',
+            width: '100%',
+            margin: '0',
+            padding: '0',
+            backgroundColor: 'rgba(0, 0, 0, 0.2)',
+            position: 'fixed',
+            top: '0',
+            left: '0',
+            zIndex: '99998',
+        },
+    };
+
     const modernAlertButtonTypes = ['ok', 'yes_no', 'custom'];
-
-    // Define modernAlert
-    let modernAlertBody = document.createElement(modernAlertProperties.el);
-
-    // Add content to modernAlert
-    modernAlertBody.innerHTML = `<p>${content}</p>`;
     
+    // Add the shadow screen
+    let modernAlertShadowScreenBody = document.createElement(modernAlertShadowScreenProperties.el);
+    Object.assign(modernAlertShadowScreenBody.style, modernAlertShadowScreenProperties.style);
+    document.body.appendChild(modernAlertShadowScreenBody).id = '_modernAlertShadowScreen';
+    let modernAlertShadowScreen = document.getElementById('_modernAlertShadowScreen');
+
     // Add style to modernAlert .. Render
+    let modernAlertBody = document.createElement(modernAlertProperties.el);
+    modernAlertBody.innerHTML = `<p>${content}</p>`;
     Object.assign(modernAlertBody.style, modernAlertProperties.style);
     document.body.appendChild(modernAlertBody).id = '_modernAlert';
-
     let modernAlertElement = document.getElementById('_modernAlert');
-
-    // Adjust horizontal margin
-    modernAlertElement.style.margin = `-207px 0 0 -${modernAlertElement.offsetWidth / 2}px`;
 
     // Add the buttons
     let modernAlertButtons = [];
-    
     if (modernAlertButtonTypes.includes(buttons) || !buttons) {
         switch (buttons) {
             case 'custom':
@@ -97,6 +110,7 @@ function modernAlert(content = '', buttons = '', values = [], callback)
         
         modernAlertButtonPromises.push(new Promise(function(resolve, reject) {
                 modernAlertButton.addEventListener('click', function(){
+                    modernAlertShadowScreen.remove();
                     modernAlertElement.remove();
                     resolve(button.return);
                 });
@@ -107,4 +121,7 @@ function modernAlert(content = '', buttons = '', values = [], callback)
     Promise.race(modernAlertButtonPromises).then(response => {
         callback(response);
     });
+
+    // Adjust horizontal margin
+    modernAlertElement.style.margin = `-207px 0 0 -${modernAlertElement.offsetWidth / 2}px`;
 }
