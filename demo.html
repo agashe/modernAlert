@@ -4,15 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>modernAlert Example</title>
+
+    <style>
+        body {
+            padding: 15px;
+            text-align: center;
+            background-color: #f9f9f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .code {
+            min-height: 50px;
+            min-width: 400px;
+            margin: 0 auto;
+            padding: 10px;
+            background-color: #8d8b8b;
+            border-radius: 10px;
+            text-align: left;
+            color: #ffffff;
+            font-size: 11pt;
+        }
+    </style>
+    
+    <title>modernAlert Examples</title>
 </head>
-<body style="text-align: center;">
-    <h1>modernAlert v1.00 Example</h1>
+<body>
+    <h1>modernAlert v1.00 Examples</h1>
 
-    <br>
+    <hr>
 
-    <button onclick="modernAlert('<b>Question</b> to the user??', 'custom', btn, res => {console.log('suger ' + res)});">Click</button>
+    <h3>#1 Basic Example</h3>
+    <button onclick="modernAlert('Ask a question to the user??');">Click here to see the result!</button>
+    <p>
+        <div class="code">
+            // on the click event of the button<br>
+            modernAlert('Ask a question to the user?');
+        </div>
+    </p>
+    
+    <hr>
 
+    <h3>#2 Yes/No Example</h3>
+    <p>(Checkyour console to see the result)</p>
+    <button onclick="modernAlert('Ask a question to the user?', {buttonsLayout: 'yesNo'}, result => {console.log(result)});">Click here to see the result!</button>
+    <p>
+        <div class="code">
+            // on the click event of the button<br>
+            modernAlert('Ask a question to the user?', {buttonsLayout: 'yesNo'}, result => {<br>
+                console.log(result); // true or false<br>
+            });<br>
+        </div>
+    </p>
+
+    <hr>
+
+    <h3>#1 Basic Example</h3>
+    <button onclick="modernAlert('<b>Ask</b> a question to the user??', 'custom', btn, res => {console.log('suger ' + res)});">Click</button>
+    
+    <hr>
+
+    <h3>#1 Basic Example</h3>
+    <button onclick="modernAlert('<b>Ask</b> a question to the user??', 'custom', btn, res => {console.log('suger ' + res)});">Click</button>
+    <hr>
+
+    <h3>#1 Basic Example</h3>
+    <button onclick="modernAlert('<b>Ask</b> a question to the user??', 'custom', btn, res => {console.log('suger ' + res)});">Click</button>
+
+    <hr>
+
+    <div>
+        <p>modernAlert &copy; 2020</p>
+        <a href="https://github.com/agashe/modernAlert">Github</a>
+    </div>    
     <!-- [JavaScript] -->
     <script src="modernAlert.js"></script>
     <script>

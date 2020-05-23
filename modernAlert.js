@@ -5,7 +5,7 @@
  * License: GPL
  */
 
-function modernAlert(content = '', buttons = '', values = [], callback)
+function modernAlert(message = '', options = {}, callback)
 {
     // Close any other modernAlert
     let oldModernAlertElement = document.getElementById('_modernAlert');
@@ -63,7 +63,7 @@ function modernAlert(content = '', buttons = '', values = [], callback)
         },
     };
 
-    const modernAlertButtonTypes = ['ok', 'yes_no', 'custom'];
+    const modernAlertButtonLayouts = ['ok', 'yesNo', 'custom'];
     
     // Add the shadow screen
     let modernAlertShadowScreenBody = document.createElement(modernAlertShadowScreenProperties.el);
@@ -73,22 +73,22 @@ function modernAlert(content = '', buttons = '', values = [], callback)
 
     // Add style to modernAlert .. Render
     let modernAlertBody = document.createElement(modernAlertProperties.el);
-    modernAlertBody.innerHTML = `<p>${content}</p>`;
+    modernAlertBody.innerHTML = `<p>${message}</p>`;
     Object.assign(modernAlertBody.style, modernAlertProperties.style);
     document.body.appendChild(modernAlertBody).id = '_modernAlert';
     let modernAlertElement = document.getElementById('_modernAlert');
 
     // Add the buttons
     let modernAlertButtons = [];
-    if (modernAlertButtonTypes.includes(buttons) || !buttons) {
-        switch (buttons) {
+    if (modernAlertButtonLayouts.includes(options.buttonsLayout) || !options.buttonsLayout) {
+        switch (options.buttonsLayout) {
             case 'custom':
-                values.forEach(value => {
-                    modernAlertButtons.push({label: value.label, return: value.return});
+                options.buttonsStructure.forEach(buttonStructure => {
+                    modernAlertButtons.push({label: buttonStructure.label, return: buttonStructure.return});
                 });
             break;
 
-            case 'yes_no':
+            case 'yesNo':
                 modernAlertButtons.push({label: 'Yes', return: true});
                 modernAlertButtons.push({label: 'No', return: false});
             break;
