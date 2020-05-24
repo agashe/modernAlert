@@ -2,8 +2,15 @@
  * Library: modernAlert
  * Version: 1.00
  * Author: Mohamed Yousef <engineer.mohamed.yossef@gmail.com>
- * License: GPL
+ * License: MIT
  */
+
+/** ********************************* ** [Note!!] ** ********************************* **/
+/** (modernAlert) released under the terms of the MIT license.                         **/
+/**                                                                                    **/
+/** You are free to use (modernAlert) in any other project (even commercial projects)  **/
+/** as long as the copyright header is left intact.                                    **/
+/** ********************************* ** [Note!!] ** ********************************* **/
 
 function modernAlert(message = '', options = {}, callback)
 {
