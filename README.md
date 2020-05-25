@@ -27,11 +27,11 @@ modernAlert(message, options, callback);
                layout.
   * buttonsLayout: - *String* - we have three basic layouts for the buttons 
   
-  1- 'ok' --> to show normal ok button , returns *null*
+    1- 'ok' --> to show normal ok button , returns *null*
   
-  2- 'yesNo' --> 2 buttons (Yes & No) , which will return true for Yes and false for the No
+    2- 'yesNo' --> 2 buttons (Yes & No) , which will return true for Yes and false for the No
   
-  3- 'custom' --> here's the magic :D , in this type we should use the second option
+    3- 'custom' --> here's the magic :D , in this type we should use the second option
   
   * buttonsStructure: - *Array* - it takes array of objects , each of these objects represents a button
 
