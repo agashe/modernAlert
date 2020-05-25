@@ -26,6 +26,7 @@ Second: call the modernAlert in your code
 * **options:** - *Object* - accept 2 values and represent your buttons , it's optional so you can leave empty to use the basic 
                layout.
   * buttonsLayout: - *String* - we have three basic layouts for the buttons 
+  
   1- 'ok' --> to show normal ok button , returns *null*
   
   2- 'yesNo' --> 2 buttons (Yes & No) , which will return true for Yes and false for the No
