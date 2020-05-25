@@ -23,13 +23,13 @@ modernAlert(message, options, callback);
 ```
 * **message:** - *String* - represents the message that will be shown to the user
 
-* **options:** - *Object* - accept 2 values and represent your buttons , it's optional so you can leave empty to use the basic 
+* **options:** - *Object* - accept 2 properties and it will be used to prepare your buttons , it's optional so you can leave empty to use the basic 
                layout.
-  * buttonsLayout: - *String* - we have three basic layouts for the buttons 
+  * buttonsLayout: - *String* - to choose the layout , we have **three** basic layouts for the buttons:
   
-      1- 'ok' --> to show normal ok button , returns *null*
+      1- 'ok' --> to show basic alert with a single button just to dismiss the message , returns *null*
   
-      2- 'yesNo' --> 2 buttons (Yes & No) , which will return true for Yes and false for the No
+      2- 'yesNo' --> 2 buttons (Yes & No) , which will return *true* for Yes and *false* for No
   
       3- 'custom' --> here's the magic :D , in this type we should use the second option
   
