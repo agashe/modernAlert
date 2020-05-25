@@ -33,7 +33,7 @@ Second: call the modernAlert in your code
   
   3- 'custom' --> here's the magic :D , in this type we should use the second option
   
-  * buttonsStructure: - *Object* - it takes array of objects , each of these objects represents a button
+  * buttonsStructure: - *Array* - it takes array of objects , each of these objects represents a button
 
 * **callback:** - *function* - where you will receive the users input
 
