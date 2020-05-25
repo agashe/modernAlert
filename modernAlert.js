@@ -102,7 +102,7 @@ function modernAlert(message = '', options = {}, callback)
 
             case 'ok':
             default:
-                modernAlertButtons.push({label: 'Ok', return: 'lol'});
+                modernAlertButtons.push({label: 'Ok', return: null});
         }
     }
 
