@@ -19,7 +19,7 @@ First: Include the modernAlert-v1.0.0.min.js file inside your base html
 Second: call the modernAlert in your code
 
 ```
-*modernAlert(message, options, callback);*
+modernAlert(message, options, callback);
 ```
 * **message:** - *String* - represents the message that will be shown to the user
 
@@ -37,9 +37,25 @@ Second: call the modernAlert in your code
 
 * **callback:** - *function* - where you will receive the users input
 
+### so the full version will be like:
+```
+modernAlert('Ask a question to the user?', 
+  {
+      buttonsLayout: 'custom',
+      buttonsStructure: [
+          {label: 'button1', return: 'return something #1'},
+          {label: 'button2', return: 'return something #2'},
+          {label: 'button3', return: 'return something #3'},
+      ]
+  },
+  result => {
+      console.log(result); // user choice 
+});
+```
 ## Examples
 *coming soon
 
 ## License
 (modernAlert) released under the terms of the MIT license.
+
 You are free to use (modernAlert) in any other project (even commercial projects) as long as the copyright header is left intact. 
